@@ -188,6 +188,7 @@
     border-radius: 8px;
     margin: 10px 10px;
     min-width: 300px;
+    text-decoration: none;
 }
 
 .packages__card:hover {
@@ -203,7 +204,7 @@
 
 .packages__card h2 {
     padding-top: 10px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
 
 }
 
@@ -276,4 +277,13 @@
 
 .form__box p {
     color: #01146f;
+}
+
+#emailError, #phoneError {
+    display: block;
+    margin-right: 4px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    font-size: 0.85em;
+    color: red;
 }

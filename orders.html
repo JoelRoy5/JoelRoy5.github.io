@@ -25,27 +25,24 @@
 <div class="order__home">
     <h1>Packages</h1>
         <div class="packages">
-            <div class="packages__card">
+            <a href="index.html" class="packages__card">
                 <h2>Basic</h2>
                 <p>Up to 2000 Square Ft</p>
                 <p>Up to 20 photos</p>
-                <p>Edited with 48 hour turnaround</p>
-                <button class="packages__card__btn">Select</button>
-            </div>
-            <div class="packages__card">
+                <p style="padding-bottom: 20px;">Edited with 48 hour turnaround</p>
+            </a>
+            <a href="index.html" class="packages__card">
                 <h2>Pro</h2>
                 <p>Up to 4000 Square Ft</p>
                 <p>Up to 35 Photos with additional if requested</p>
                 <p>Edited with 48 hour turnaround</p>
-                <button class="packages__card__btn">Select</button>
-            </div>
-            <div class="packages__card">
+            </a>
+            <a href="index.html" class="packages__card">
                 <h2>Custom</h2>
                 <p>4000+ Square Ft</p>
                 <p>35 Photos with additional if requested</p>
                 <p>Edited with 48 hour turnaround</p>
-                <button class="packages__card__btn">Select</button>
-            </div>
+            </a>
         </div>
 </div>
 
@@ -78,6 +75,9 @@
                    required
                    pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                    placeholder="example@gmail.com">
+            <small id="emailError" style="color:red; display:none;">
+                Please enter a valid email address.
+            </small>
         </div>
         <div class="form__box">
             <p>Phone</p>
@@ -87,7 +87,9 @@
                    required
                    pattern="^\+?[0-9]{7,15}$"
                    placeholder="+1 (555) 555-5555">
-
+            <small id="phoneError" style="color:red; display:none;">
+                Please enter a valid phone number (7–15 digits, optional +).
+            </small>
         </div>
         <div class="form__box">
             <p>Message</p>
@@ -98,6 +100,43 @@
         <button type="submit" class="packages__card__btn">Submit Form</button>
 
     </form>
+    <script>
+        const emailInput = document.getElementById("email");
+        const emailError = document.getElementById("emailError");
+
+        emailInput.addEventListener("input", function()
+        {
+            const regex = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            if (emailInput.value === "" || regex.test(emailInput.value))
+            {
+                emailInput.style.border = "";          // reset to default
+                emailError.style.display = "none";     // hide error
+            }
+            else
+            {
+                emailInput.style.border = "2px solid red";  // show red border
+                emailError.style.display = "block";         // show error
+            }
+        });
+
+        const phoneInput = document.getElementById("phone");
+        const phoneError = document.getElementById("phoneError");
+
+        phoneInput.addEventListener("input", function()
+        {
+            const regex = /^\+?[0-9]{7,15}$/;
+            if (phoneInput.value === "" || regex.test(phoneInput.value))
+            {
+                phoneInput.style.border = "";          // reset to default
+                phoneError.style.display = "none";     // hide error
+            }
+            else
+            {
+                phoneInput.style.border = "2px solid red";  // show red border
+                phoneError.style.display = "block";         // show error
+            }
+        });
+    </script>
 </div>
 
 
