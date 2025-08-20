@@ -12,7 +12,7 @@
 <nav class="navbar">
     <div class="navbar__left">
         <a href="index.html" class="navbar__btn">
-            <img src="images/360PicturesNavyLogo.png" alt="PIC360 Logo" width="100" height="100"></img>
+            <img src="images/360PicturesNavyLogo.png" alt="PIC360 Logo" width="100" height="100">
             <!--<a href="index.html" class="navbar__btn">360Pictures</a>-->
         </a>
     </div>
@@ -25,24 +25,24 @@
 <div class="order__home">
     <h1>Packages</h1>
         <div class="packages">
-            <a href="index.html" class="packages__card">
+            <div class="packages__card" data-package="Basic">
                 <h2>Basic</h2>
                 <p>Up to 2000 Square Ft</p>
                 <p>Up to 20 photos</p>
                 <p style="padding-bottom: 20px;">Edited with 48 hour turnaround</p>
-            </a>
-            <a href="index.html" class="packages__card">
+            </div>
+            <div class="packages__card" data-package="Pro">
                 <h2>Pro</h2>
                 <p>Up to 4000 Square Ft</p>
                 <p>Up to 35 Photos with additional if requested</p>
                 <p style="padding-bottom: 20px;">Edited with 48 hour turnaround</p>
-            </a>
-            <a href="index.html" class="packages__card">
+            </div>
+            <div class="packages__card" data-package="Custom">
                 <h2>Custom</h2>
                 <p>4000+ Square Ft</p>
                 <p>35 Photos with additional if requested</p>
                 <p style="padding-bottom: 20px;">Edited with 48 hour turnaround</p>
-            </a>
+            </div>
         </div>
 </div>
 
@@ -53,6 +53,8 @@
     <form action="https://api.web3forms.com/submit" method="POST">
 
         <input type="hidden" name="access_key" value="3584b5c4-ed5c-4ea5-aa05-09bd196e25d4">
+        <input type="hidden" name="package" id="packageInput">
+
         <div class="form__box">
             <p>First Name</p>
             <input type="text"
@@ -100,6 +102,28 @@
         <button type="submit" class="packages__card__btn">Submit Form</button>
 
     </form>
+    <script>
+        const cards = document.querySelectorAll('.packages__card');
+        const packageInput = document.getElementById('packageInput');
+
+        cards.forEach(card => {
+            card.addEventListener('click', () => {
+                // if this card is already selected → unselect it
+                if (card.classList.contains('selected')) {
+                    card.classList.remove('selected');
+                    packageInput.value = ""; // clear hidden input
+                    return;
+                }
+
+                // otherwise → clear others and select this one
+                cards.forEach(c => c.classList.remove('selected'));
+                card.classList.add('selected');
+                packageInput.value = card.getAttribute('data-package');
+
+                console.log("Selected package:", packageInput.value); // debug
+            });
+        });
+    </script>
     <script>
         const emailInput = document.getElementById("email");
         const emailError = document.getElementById("emailError");
